@@ -18,11 +18,25 @@ Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-se
 
 ## Usage
 
-Make `laravel-echo-server.json` and run
+Make `laravel-echo-server.json` file and run
 
 ```bash
 $ docker run -d -p 6001:6001 -v $(pwd):/app oanhnn/laravel-echo-server
 ```
+
+If `laravel-echo-server.json` file is missing, container will generate a `laravel-echo-server.json` file from environment variable:
+
+| Environment variable | Value if missing   | Note |
+|----------------------|--------------------|------|
+| `APP_URL`            | `http://127.0.0.1` | Application base URL |
+| `APP_DEBUG`          | `false`            | Application debug mode |
+| `LES_DB`             | `sqlite`           | Using database type of Laravel Echo Server. Allow `sqlite` or `redis` |
+| `LES_HOST`           | `0.0.0.0`          | Listen host of Laravel Echo Server |
+| `LES_PORT`           | `6001`             | Listen port of Laravel Echo Server |
+| `REDIS_HOST`         | `127.0.0.1`        | Redis server's host |
+| `REDIS_PORT`         | `6379`             | Redis server's port |
+| `REDIS_DB_BACKJOBS`  | `0`                | Redis database for using |
+
 
 ## Contributing
 
