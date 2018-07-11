@@ -1,0 +1,33 @@
+sudo: required
+dist: trusty
+
+services:
+  - docker
+
+env:
+  global:
+    - DOCKER_REPO="oanhnn/laravel-echo-server"
+    # DOCKER_USER
+    # DOCKER_PASSWORD
+
+before_script:
+  - export BUILD_TAG=${TRAVIS_COMMIT::8}
+  - export BUILD_CONTAINER="laravel-echo-server-$BUILD_TAG"
+
+script:
+  - docker build -t $DOCKER_REPO:$BUILD_TAG .
+  - docker run -d -p 6001:6001 -v $(pwd):/app --name $BUILD_CONTAINER $DOCKER_REPO:$BUILD_TAG;
+  - sleep 10
+  - docker ps
+  - curl --retry 10 --retry-delay 2 -I http://127.0.0.1:6001/socket.io/socket.io.js
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
+    docker tag $DOCKER_REPO:$BUILD_TAG $DOCKER_REPO:latest;
+    docker push $DOCKER_REPO:latest;
+    fi
+  - if [[ ! -z "$TRAVIS_TAG" ]]; then
+    docker tag $DOCKER_REPO:$BUILD_TAG $DOCKER_REPO:$TRAVIS_TAG;
+    docker push $DOCKER_REPO:$TRAVIS_TAG;
+    fi
