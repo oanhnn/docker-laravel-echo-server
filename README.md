@@ -4,7 +4,6 @@
 [![](https://images.microbadger.com/badges/image/oanhnn/laravel-echo-server.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server)
 [![](https://images.microbadger.com/badges/version/oanhnn/laravel-echo-server.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server)
 [![](https://images.microbadger.com/badges/commit/oanhnn/laravel-echo-server.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server)
-[![GitHub license](https://img.shields.io/github/license/oanhnn/docker-laravel-echo-server.svg)](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE)
 
 Repository of `oanhnn/laravel-echo-server` Docker image.   
 Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
