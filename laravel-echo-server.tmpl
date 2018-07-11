@@ -2,7 +2,7 @@
   "authHost": "{{ default .Env.APP_URL "http://127.0.0.1" }}",
   "authEndpoint": "/broadcasting/auth",
   "clients": [],
-  "database": "redis",
+  "database": "{{ default .Env.LES_DB "sqlite" }}",
   "databaseConfig": {
     "redis": {
       "host": "{{ default .Env.REDIS_HOST "127.0.0.1" }}",
