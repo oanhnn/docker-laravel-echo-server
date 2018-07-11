@@ -7,8 +7,8 @@ services:
 env:
   global:
     - DOCKER_REPO="oanhnn/laravel-echo-server"
-    # DOCKER_USER
-    # DOCKER_PASSWORD
+    #- DOCKER_USER
+    #- DOCKER_PASSWORD
 
 before_script:
   - export BUILD_TAG=${TRAVIS_COMMIT::8}
@@ -16,8 +16,8 @@ before_script:
 
 script:
   - docker build -t $DOCKER_REPO:$BUILD_TAG .
-  - docker run -d -p 80:6001 -v $(pwd):/app --name $BUILD_CONTAINER $DOCKER_REPO:$BUILD_TAG
-  - sleep 60 && docker ps
+  - docker run -d -p 127.0.0.1:80:6001/tcp -v `pwd`:/app --name $BUILD_CONTAINER $DOCKER_REPO:$BUILD_TAG
+  - sleep 60 && docker ps && docker logs $BUILD_CONTAINER
   - curl --retry 10 --retry-delay 2 -I http://127.0.0.1/socket.io/socket.io.js
 
 after_success:
