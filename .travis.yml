@@ -20,7 +20,7 @@ before_script:
 
 script:
   - docker build -t $DOCKER_REPO:$BUILD_TAG .
-  - docker run -d --net="host" --name $BUILD_CONTAINER $DOCKER_REPO:$BUILD_TAG
+  - docker run -d --net="host" --env LES_DB=$LES_DB --name $BUILD_CONTAINER $DOCKER_REPO:$BUILD_TAG
   - sleep 60 && docker ps && docker logs $BUILD_CONTAINER
   - curl --retry 10 --retry-delay 2 -I http://127.0.0.1:6001/socket.io/socket.io.js
 
