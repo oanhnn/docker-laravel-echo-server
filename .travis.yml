@@ -3,12 +3,16 @@ dist: trusty
 
 services:
   - docker
+  - redis-server
 
 env:
   global:
     - DOCKER_REPO="oanhnn/laravel-echo-server"
     #- DOCKER_USER
     #- DOCKER_PASSWORD
+  matrix:
+    - LES_DB="sqlite"
+    - LES_DB="redis"
 
 before_script:
   - export BUILD_TAG=${TRAVIS_COMMIT::8}
@@ -16,9 +20,9 @@ before_script:
 
 script:
   - docker build -t $DOCKER_REPO:$BUILD_TAG .
-  - docker run -d -p 127.0.0.1:80:6001/tcp --name $BUILD_CONTAINER $DOCKER_REPO:$BUILD_TAG
+  - docker run -d --net="host" --name $BUILD_CONTAINER $DOCKER_REPO:$BUILD_TAG
   - sleep 60 && docker ps && docker logs $BUILD_CONTAINER
-  - curl --retry 10 --retry-delay 2 -I http://127.0.0.1/socket.io/socket.io.js
+  - curl --retry 10 --retry-delay 2 -I http://127.0.0.1:6001/socket.io/socket.io.js
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
