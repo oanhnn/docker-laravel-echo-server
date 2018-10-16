@@ -3,7 +3,6 @@
 /.docker
 /*.log
 database/laravel-echo-server.sqlite
-laravel-echo-server.json
 
 # IDE and editor specific files #
 #################################

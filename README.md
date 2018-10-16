@@ -21,10 +21,10 @@ Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-se
 Make `laravel-echo-server.json` file and run
 
 ```bash
-$ docker run -d -p 6001:6001 -v `pwd`:/app oanhnn/laravel-echo-server
+$ docker run -d -p 6001:6001 -v /path/to/laravel-echo-server.json:/etc/laravel-echo-server.json oanhnn/laravel-echo-server
 ```
 
-If `laravel-echo-server.json` file is missing, container will generate a `laravel-echo-server.json` file from environment variable:
+If `/etc/laravel-echo-server.json` file is missing, container will generate a `laravel-echo-server.json` file from environment variable:
 
 | Environment variable | Value if missing   | Note |
 |----------------------|--------------------|------|
