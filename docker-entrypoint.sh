@@ -8,7 +8,7 @@ fi
 
 # laravel-echo-server <sub-command>
 if [ "$1" = 'start' ] || [ "$1" = 'client:add' ] || [ "$1" = 'client:remove' ]; then
-    if [! -f /app/laravel-echo-server.json ]; then
+    if [ ! -f /app/laravel-echo-server.json ]; then
         cp /etc/laravel-echo-server.json /app/laravel-echo-server.json
         # Replace with environment variables
         sed -i "s|LARAVEL_ECHO_SERVER_DB|${LARAVEL_ECHO_SERVER_DB:-redis}|i" /app/laravel-echo-server.json
