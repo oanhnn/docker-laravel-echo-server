@@ -10,7 +10,7 @@ Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-se
 
 ## Features
 
-- [x] Base from `node:10.6-alpine` image
+- [x] Base from `node:10-alpine` image
 - [x] Install `laravel-echo-server`
 
 ## Requirement
@@ -18,25 +18,58 @@ Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-se
 
 ## Usage
 
-Make `laravel-echo-server.json` file and run
+### Run laravel-echo-server
+
+Run laravel-echo-server by command
 
 ```bash
-$ docker run -d -p 6001:6001 -v /path/to/laravel-echo-server.json:/etc/laravel-echo-server.json oanhnn/laravel-echo-server
+$ docker run -d -p 6001:6001 -v $(pwd):/app oanhnn/laravel-echo-server
 ```
 
-If `/etc/laravel-echo-server.json` file is missing, container will generate a `laravel-echo-server.json` file from environment variable:
+If `/app/laravel-echo-server.json` isn't exists, default `laravel-echo-server.json` will be using, that using same default configs 
+with [laravel-echo-server](https://github.com/tlaverdure/laravel-echo-server/blob/master/README.md#configurable-options)   
+You can set Redis config by environment variables:
 
-| Environment variable | Value if missing   | Note |
-|----------------------|--------------------|------|
-| `APP_URL`            | `http://127.0.0.1` | Application base URL |
-| `APP_DEBUG`          | `false`            | Application debug mode |
-| `LES_DB`             | `sqlite`           | Using database type of Laravel Echo Server. Allow `sqlite` or `redis` |
-| `LES_HOST`           | `0.0.0.0`          | Listen host of Laravel Echo Server |
-| `LES_PORT`           | `6001`             | Listen port of Laravel Echo Server |
-| `REDIS_HOST`         | `127.0.0.1`        | Redis server's host |
-| `REDIS_PORT`         | `6379`             | Redis server's port |
-| `REDIS_DB_BACKJOBS`  | `0`                | Redis database for using |
+```json
+  "databaseConfig": {
+    "redis": {
+      "host": "REDIS_HOST",
+      "port": "REDIS_PORT",
+      "options": {
+        "db": "REDIS_DB_BACKEND"
+      }
+    },
+    "sqlite": {}
+  },
+```
 
+| Environment variable | Default value |
+|:---------------------|:--------------|
+| `REDIS_HOST`         | `redis`       |
+| `REDIS_PORT`         | `6379`        |
+| `REDIS_DB_BACKEND`   | `0`           |
+
+### Override config by environment variables
+
+If some environment variables are existed (allow load `/app/.env` file is found), the following options can be overridden:
+
+| Environment variable | Config key | Note |
+|:---------------------|:-----------|:-----|
+| `LARAVEL_ECHO_SERVER_AUTH_HOST` | `authHost` | This option will fall back to the `LARAVEL_ECHO_SERVER_HOST` option as the default if that is set. |
+| `LARAVEL_ECHO_SERVER_HOST` | `host` | |
+| `LARAVEL_ECHO_SERVER_PORT` | `port` | |
+| `LARAVEL_ECHO_SERVER_DEBUG` | `devMode` | |
+
+See more about `laravel-echo-server.json` in [here](https://github.com/tlaverdure/laravel-echo-server/blob/master/README.md)
+
+### Run laravel-echo-server sub-commands
+
+```bash
+$ docker run --rm -it -v $(pwd):/app oanhnn/laravel-echo-server init
+$ docker run --rm -it -v $(pwd):/app oanhnn/laravel-echo-server start
+$ docker run --rm -it -v $(pwd):/app oanhnn/laravel-echo-server client:add
+$ docker run --rm -it -v $(pwd):/app oanhnn/laravel-echo-server client:remove
+```
 
 ## Contributing
 

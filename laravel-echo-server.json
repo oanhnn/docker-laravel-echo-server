@@ -1,0 +1,29 @@
+{
+  "authHost": "http://localhost",
+  "authEndpoint": "/broadcasting/auth",
+  "clients": [],
+  "database": "LARAVEL_ECHO_SERVER_DB",
+  "databaseConfig": {
+    "redis": {
+      "host": "REDIS_HOST",
+      "port": "REDIS_PORT",
+      "options": {
+        "db": "REDIS_DB_BACKEND"
+      }
+    },
+    "sqlite": {
+      "databasePath": "/app/database/laravel-echo-server.sqlite"
+    }
+  },
+  "devMode": false,
+  "host": null,
+  "port": 6001,
+  "protocol": "http",
+  "subscribers": {"http": true, "redis": true},
+  "apiOriginAllow": {
+    "allowCors": true,
+    "allowOrigin": "http://localhost",
+    "allowMethods": "GET, OPTION, POST",
+    "allowHeaders": "Accept, Authorization, Content-Type, Origin, X-Auth-Token, X-CSRF-TOKEN, X-Requested-With, X-Socket-Id"
+  }
+}
