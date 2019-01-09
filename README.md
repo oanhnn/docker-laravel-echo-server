@@ -59,6 +59,7 @@ If some environment variables are existed (allow load `/app/.env` file is found)
 | `LARAVEL_ECHO_SERVER_HOST` | `host` | |
 | `LARAVEL_ECHO_SERVER_PORT` | `port` | |
 | `LARAVEL_ECHO_SERVER_DEBUG` | `devMode` | |
+| `LARAVEL_ECHO_SERVER_WAIT` | `true` | Wait for `/app/laravel-echo-server.json` to be injected by another process. Default is `false`. |
 
 See more about `laravel-echo-server.json` in [here](https://github.com/tlaverdure/laravel-echo-server/blob/master/README.md)
 
