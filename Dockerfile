@@ -1,7 +1,9 @@
 FROM node:10-alpine
 
+WORKDIR /app
+
 ### Install Laravel Echo Server and dependencies
-RUN apk add --update sqlite openssl \
+RUN apk add --update --no-cache sqlite openssl \
  && apk add --update --no-cache --virtual .build-deps \
         binutils-gold \
         curl \
@@ -14,15 +16,13 @@ RUN apk add --update sqlite openssl \
         python \
  && yarn global add --prod --no-lockfile laravel-echo-server \
  && apk del .build-deps \
- && yarn cache clean
+ && yarn cache clean \
+ && mkdir -p /app/database
 
-RUN mkdir -p /app/database
-COPY laravel-echo-server.json /etc/laravel-echo-server.json
+COPY . /usr/local/
 
-COPY docker-entrypoint.sh     /usr/local/bin/docker-entrypoint
-ENTRYPOINT ["docker-entrypoint"]
+ENTRYPOINT ["usr/local/bin/docker-entrypoint.sh"]
 
-WORKDIR /app
 VOLUME /app
 
 EXPOSE 6001
