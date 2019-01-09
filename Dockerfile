@@ -21,7 +21,7 @@ RUN apk add --update --no-cache sqlite openssl \
 
 COPY . /usr/local/
 
-ENTRYPOINT ["usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint"]
 
 VOLUME /app
 
