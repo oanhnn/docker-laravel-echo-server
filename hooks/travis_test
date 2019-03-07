@@ -1,0 +1,15 @@
+#!/bin/bash
+
+IMAGE_NAME="oanhnn/laravel-echo-server:latest"
+LARAVEL_ECHO_SERVER_DB="redis"
+
+echo "=> Testing the image ${IMAGE_NAME}"
+docker run -d --net="host" \
+           -e REDIS_HOST=localhost \
+           -e LARAVEL_ECHO_SERVER_DB=${LARAVEL_ECHO_SERVER_DB} \
+           ${IMAGE_NAME}
+
+sleep 60
+docker ps
+
+curl --retry 10 --retry-delay 2 -I http://127.0.0.1:6001/socket.io/socket.io.js

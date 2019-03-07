@@ -27,4 +27,7 @@ VOLUME /app
 
 EXPOSE 6001
 
+HEALTHCHECK --interval=30s --timeout=5s \
+        CMD /usr/local/bin/health-check
+
 CMD ["start"]
