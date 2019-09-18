@@ -3,7 +3,7 @@ FROM node:10-alpine
 WORKDIR /app
 
 ### Install Laravel Echo Server and dependencies
-RUN apk add --update --no-cache sqlite openssl curl \
+RUN apk add --update --no-cache openssl curl \
  && apk add --update --no-cache --virtual .build-deps \
         binutils-gold \
         g++ \
