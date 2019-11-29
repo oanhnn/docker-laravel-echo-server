@@ -64,6 +64,7 @@ Using database be configured by environment variable `LARAVEL_ECHO_SERVER_DB` (d
     "redis": {
       "host": "REDIS_HOST",
       "port": "REDIS_PORT",
+      "keyPrefix": "REDIS_KEY_PREFIX",
       "options": {
         "db": "REDIS_DB_BACKEND"
       }
@@ -72,11 +73,12 @@ Using database be configured by environment variable `LARAVEL_ECHO_SERVER_DB` (d
   },
   ```
 
-  | Environment variable | Default value |
-  |:---------------------|:--------------|
-  | `REDIS_HOST`         | `redis`       |
-  | `REDIS_PORT`         | `6379`        |
-  | `REDIS_DB_BACKEND`   | `0`           |
+  | Environment variable | Default value       |
+  |:---------------------|:--------------------|
+  | `REDIS_HOST`         | `redis`             |
+  | `REDIS_PORT`         | `6379`              |
+  | `REDIS_KEY_PREFIX`   | `laravel_database_` |
+  | `REDIS_DB_BACKEND`   | `0`                 |
 
 - You can use SQLite database by set environment variable `LARAVEL_ECHO_SERVER_DB` to `sqlite`. 
   The SQLite file will store in `/app/database/`
