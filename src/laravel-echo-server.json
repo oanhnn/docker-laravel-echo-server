@@ -7,6 +7,7 @@
     "redis": {
       "host": "REDIS_HOST",
       "port": "REDIS_PORT",
+      "keyPrefix": "REDIS_KEY_PREFIX",
       "options": {
         "db": "REDIS_DB_BACKEND"
       }
