@@ -1,13 +1,14 @@
 # User specific & automatically generated files #
 #################################################
-/.docker
-/*.log
-database/laravel-echo-server.sqlite
+.docker
+*.log
+*.sqlite
 
 # IDE and editor specific files #
 #################################
-/nbproject
-/.idea
+nbproject
+.idea
+.vscode
 
 # OS generated files #
 ######################

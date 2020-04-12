@@ -1,0 +1,74 @@
+name: CI-CD
+
+on:
+  push:
+    branches:
+      - 'master'
+      - 'develop'
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - 'master'
+
+env:
+  DOCKER_IMAGE: oanhnn/laravel-echo-server
+
+jobs:
+  build:
+    name: Build, test and publish image
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get the version
+        id: vars
+        run: |
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "master" ] && VERSION=latest
+          # Set step output
+          echo "::set-output name=version::$VERSION"
+
+      - name: Build image
+        run: |
+          docker build --pull --cache-from $DOCKER_IMAGE \
+                       --label "org.opencontainers.image.title='Laravel Echo Server'" \
+                       --label "org.opencontainers.image.authors=oanhnn" \
+                       --label "org.opencontainers.image.licenses=MIT" \
+                       --label "org.opencontainers.image.version=${{ steps.vars.outputs.version }}" \
+                       --label "org.opencontainers.image.created=${{ steps.vars.outputs.version }}" \
+                       --label "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
+                       --label "org.opencontainers.image.revision=${{ github.sha }}" \
+                       --tag $DOCKER_IMAGE:test .
+
+      - name: Test with redis database
+        run: |
+          docker run -d --rm -p 6001:6001 -e REDIS_HOST=redis --name test-redis $DOCKER_IMAGE:test
+          sleep 5
+          docker ps
+          curl --retry 10 --retry-delay 2 -I http://127.0.0.1:6001/socket.io/socket.io.js
+          docker stop test-redis
+
+      - name: Test with sqlite database
+        run: |
+          docker run -d --rm -p 6001:6001 -e LARAVEL_ECHO_SERVER_DATABASE=sqlite --name test-sqlite $DOCKER_IMAGE:test
+          sleep 5
+          docker ps
+          curl --retry 10 --retry-delay 2 -I http://127.0.0.1:6001/socket.io/socket.io.js
+          docker stop test-sqlite
+
+      - name: Publish image to Docker Hub
+        if: github.event_name != 'pull_request'
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker tag $DOCKER_IMAGE:test $DOCKER_IMAGE:$VERSION
+          docker push $DOCKER_IMAGE:$VERSION

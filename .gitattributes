@@ -44,5 +44,6 @@
 
 # Exclude unused files
 /.gitattributes     export-ignore
+/.github            export-ignore
 /.gitignore         export-ignore
 /CHANGELOG.md       export-ignore

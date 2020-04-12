@@ -1,7 +1,9 @@
+/examples
 /hooks
 /.editorconfig
 /.git
 /.gitattributes
+/.github
 /.gitignore
 /.travis.yml
 /Dockerfile

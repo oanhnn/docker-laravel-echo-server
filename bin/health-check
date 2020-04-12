@@ -26,8 +26,7 @@ fn_health_check () {
         # server returns response 403 and body "SSL required" if non-TLS
         # connection is attempted on a TLS-configured server. Change
         # the scheme and try again
-        if [[ "$http_response" = "403" ]] && \
-        [[ "$http_response_body" = "SSL required" ]]; then
+        if [[ "$http_response" = "403" ]] && [[ "$http_response_body" = "SSL required" ]]; then
             scheme="https://"
             http_response=$(curl -s -k -o /dev/null -w "%{http_code}" ${scheme}${address}${resource})
         fi
