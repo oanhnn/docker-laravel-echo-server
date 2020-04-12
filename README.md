@@ -1,12 +1,11 @@
-# oanhnn/docker-laravel-echo-server
+# oanhnn/laravel-echo-server
+
+Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
 
 [![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/CI-CD/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
 [![Docker Pulls](https://img.shields.io/docker/pulls/oanhnn/laravel-echo-server.svg)](https://hub.docker.com/r/oanhnn/laravel-echo-server)
 [![Docker Stars](https://img.shields.io/docker/stars/oanhnn/laravel-echo-server.svg)](https://hub.docker.com/r/oanhnn/laravel-echo-server)
 [![Software License](https://img.shields.io/github/license/oanhnn/docker-laravel-echo-server.svg)](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE)
-
-Repository of `oanhnn/laravel-echo-server` Docker image.   
-Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
 
 ## Tags
 
@@ -18,7 +17,7 @@ Git tag  | Image tag | Badges
 `v2.0.0` | `2.0.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.0.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.0.0)
 `v2.1.0` | `2.1.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.1.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.1.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.0)
 `v2.1.1` | `2.1.1`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.1.1.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.1) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.1.1.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.1)
-`v2.2.0` | `2.2.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.2.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.2.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.2.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.2.0)
+`v3.0.0` | `3.0.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/3.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:3.0.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/3.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:3.0.0)
 
 ### Branch tags
 
@@ -29,7 +28,7 @@ Git tag  | Image tag | Badges
 
 - [x] Base from `node:lts-alpine` image
 - [x] Install latest `laravel-echo-server`
-- [x] Auth generate config file
+- [x] Auto generate config file
 
 ## Requirement
 - Docker Engine 1.13+

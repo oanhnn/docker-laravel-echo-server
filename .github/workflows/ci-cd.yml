@@ -37,6 +37,7 @@ jobs:
           [ "$VERSION" == "master" ] && VERSION=latest
           # Set step output
           echo "::set-output name=version::$VERSION"
+          echo "::set-output name=created::$(date --utc --iso-8601=seconds | sed 's/+00.00/Z/g')"
 
       - name: Build image
         run: |
@@ -45,7 +46,7 @@ jobs:
                        --label "org.opencontainers.image.authors=oanhnn" \
                        --label "org.opencontainers.image.licenses=MIT" \
                        --label "org.opencontainers.image.version=${{ steps.vars.outputs.version }}" \
-                       --label "org.opencontainers.image.created=${{ steps.vars.outputs.version }}" \
+                       --label "org.opencontainers.image.created=${{ steps.vars.outputs.created }}" \
                        --label "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
                        --label "org.opencontainers.image.revision=${{ github.sha }}" \
                        --tag $DOCKER_IMAGE:test .
@@ -70,5 +71,5 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker tag $DOCKER_IMAGE:test $DOCKER_IMAGE:$VERSION
-          docker push $DOCKER_IMAGE:$VERSION
+          docker tag $DOCKER_IMAGE:test $DOCKER_IMAGE:${{ steps.vars.outputs.version }}
+          docker push $DOCKER_IMAGE:${{ steps.vars.outputs.version }}
