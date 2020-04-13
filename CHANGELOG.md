@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased] - YYYY-MM-DD
 
 ### Added
-- Add support Laravel 6.5
+- Nothing
 
 ### Changed
 - Nothing
@@ -29,82 +29,63 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
-## [1.0.2] - 2019-11-06
+## [v3.0.0] - 2020-04-13
 
 ### Added
-- Support `monolog/monolog:^2.0`
+- Add support Redis password and prefix by `REDIS_PASSWORD` and `REDIS_PREFIX`
+- Add `CHANGELOG.md`
 
 ### Changed
-- Change coding style from PSR-2 to PSR-12
-
-### Fixed
-- Logs wasn't send to Logz.io
+- Changed to build, test and publish by Github actions
+- Rename some environment variables: `REDIS_DB`
 
 
 
 
-## [1.0.1] - 2019-11-06
+## [v2.1.1] - 2019-05-07
 
-### Fixed
-- Fix class name `ServiceProvider` in `composer.json`. Thank @cschalenborgh
+### Add
 
-
-
-
-## [1.0.0] - 2019-11-05
-
-### Added
-- Add support PHP application (non Laravel)
-- Add support `region`, thank @cschalenborgh
-
-### Changed
-- Using `GuzzleHttp/Guzzle` package instead of `ext-curl`
-- Rename class `Laravel\Logzio\LogzioFormatter` to `Laravel\Logzio\Log\Formatter`
-- Rename class `Laravel\Logzio\LogzioHandler` to `Laravel\Logzio\Log\Handler`
-- Refactor test scripts
+- Add `HEALTHCHECK` block
 
 
 
 
-## [0.2.0] - 2019-09-07
+## [v2.1.0] - 2019-01-09
+
+### Add
+
+- Allow wait another process generate `laravel-echo-server.json` file.
 
 ### Changed
-- Update support for Laravel Framework v6.0
-- Update TravisCI configuration
-- Update PHPUnit configuration
+
+- Changed to build and test by TravisCI, publish by Docker Auto build
 
 
 
 
-## [0.1.2] - 2018-07-18
-
-### Fixed
-- Missing class `Laravel\Logzio\LogzioServiceProvider`
-
-
-
-
-## [0.1.1] - 2018-05-18
+## [v2.0.0] - 2018-10-17
 
 ### Changed
-- Changed CHANGELOG format
 
-### Fixed
-- Fix project link
+- Changed how to generate config file
+- Changed config template file base Laravel Echo Server default config
+- Changed environment variable's prefix from `LES_` to `LARAVEL_ECHO_SERVER_`
+- Changed default value of same environment variables
+- Changed to build and publish by TravisCI
 
 
 
 
-## 0.1.0 - 2018-04-17
+## v1.0.0 - 2018-07-11
 
 First release
 
 
 
-[Unreleased]: https://github.com/oanhnn/laravel-logzio/compare/v1.0.2...develop
-[1.0.2]:      https://github.com/oanhnn/laravel-logzio/compare/v1.0.1...v1.0.2
-[1.0.1]:      https://github.com/oanhnn/laravel-logzio/compare/v1.0.0...v1.0.1
-[1.0.0]:      https://github.com/oanhnn/laravel-logzio/compare/v0.2.0...v1.0.0
-[0.2.0]:      https://github.com/oanhnn/laravel-logzio/compare/v0.1.2...v0.2.0
-[0.1.2]:      https://github.com/oanhnn/laravel-logzio/compare/v0.1.1...v0.1.2
-[0.1.1]:      https://github.com/oanhnn/laravel-logzio/compare/v0.1.0...v0.1.1
+
+[Unreleased]: https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.0.0...develop
+[v3.0.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v2.1.1...v3.0.0
+[v2.1.1]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v2.1.0...v2.1.1
+[v2.1.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v2.0.0...v2.1.0
+[v2.0.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v1.0.0...v2.0.0
