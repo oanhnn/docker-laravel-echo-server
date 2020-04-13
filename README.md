@@ -92,13 +92,13 @@ It be configured by environment variable `LARAVEL_ECHO_SERVER_DB` (default is `r
   },
   ```
 
-  | Environment variable | Default value |
-  |:---------------------|:--------------|
-  | `REDIS_HOST`         | `redis`       |
-  | `REDIS_PORT`         | `6379`        |
-  | `REDIS_PASSWORD`     | `NULL`        |
-  | `REDIS_PREFIX`       | `""`          |
-  | `REDIS_DB`           | `0`           |
+  | Environment variable | Default value       |
+  |:---------------------|:--------------------|
+  | `REDIS_HOST`         | `redis`             |
+  | `REDIS_PORT`         | `6379`              |
+  | `REDIS_PASSWORD`     | `NULL`              |
+  | `REDIS_PREFIX`       | `laravel_database_` |
+  | `REDIS_DB`           | `0`                 |
 
 - You can use SQLite database by set environment variable `LARAVEL_ECHO_SERVER_DB` to `sqlite`. 
   The SQLite file will store in `/app/database/`

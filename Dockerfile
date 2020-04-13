@@ -15,10 +15,11 @@ RUN set -eux; \
     yarn global add --prod --no-lockfile laravel-echo-server ; \
     apk del .build-deps ; \
     yarn cache clean ; \
-    mkdir -p /app/database
+    mkdir -p /app/database ; \
+    rm /usr/local/bin/docker-entrypoint.sh
 
-COPY bin/* /usr/local/bin/
-COPY src/* /usr/local/src/
+COPY bin/docker-entrypoint bin/health-check /usr/local/bin/
+COPY src/laravel-echo-server.json /usr/local/src/
 
 VOLUME /app
 EXPOSE 6001

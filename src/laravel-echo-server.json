@@ -3,7 +3,7 @@
   "authEndpoint": "/broadcasting/auth",
   "authHost": "http://localhost",
   "clients": [],
-  "database": "redis",
+  "database": "LARAVEL_ECHO_SERVER_DB",
   "databaseConfig": {
     "redis": {
       "host": "REDIS_HOST",
@@ -11,7 +11,7 @@
       "password": "REDIS_PASSWORD",
       "keyPrefix": "REDIS_PREFIX",
       "options": {
-        "db": "REDIS_DB_BACKEND"
+        "db": "REDIS_DB"
       }
     },
     "sqlite": {
