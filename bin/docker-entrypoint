@@ -6,7 +6,7 @@ if [[ "$1" == 'init' ]]; then
     set -- laravel-echo-server "$@"
 fi
 
-if [[ -f /app/laravel-echo-server.lock ]]; then
+if [ "$1" == 'start' ] && [ -f '/app/laravel-echo-server.lock' ]; then
     rm /app/laravel-echo-server.lock
 fi
 
