@@ -1,5 +1,14 @@
 # oanhnn/laravel-echo-server
 
+## Features
+
+- [x] Build from official NodeJS docker image
+- [x] Installed some [PHP extensions](#extensions)
+- [x] Installed XDebug extension but disable by default
+- [x] Add `artisan` bin alias to `php /var/www/artisan`
+- [x] Auto create infinite loop when run `artisan schedule:run` with option `--sleep`
+- [x] Auto build and push by Github Workflow
+
 Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
 
 [![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/CI-CD/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
@@ -142,5 +151,5 @@ If you would like to help take a look at the [list of issues](https://github.com
 ## License
 
 This project is released under the MIT License.   
-Copyright © [Oanh Nguyen](https://github.com/oanhnn)   
-Please see [License File](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE) for more information.
+Copyright © 2020 [Oanh Nguyen](https://github.com/oanhnn)   
+Please see [License File](./LICENSE) for more information.
