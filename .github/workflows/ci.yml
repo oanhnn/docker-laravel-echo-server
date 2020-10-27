@@ -1,4 +1,4 @@
-name: Build and test
+name: CI
 
 on:
   # Build the nightly version at 8:20 AM UTC

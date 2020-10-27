@@ -2,7 +2,7 @@
 
 Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
 
-[![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/Build%20and%20test/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
+[![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/CI/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
 [![Software License](https://img.shields.io/github/license/oanhnn/docker-laravel-echo-server.svg)](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE)
 
 ## Features
