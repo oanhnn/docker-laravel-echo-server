@@ -1,7 +1,7 @@
 name: Build and test
 
 on:
-  # Build the nightly version at at 8:20 AM UTC
+  # Build the nightly version at 8:20 AM UTC
   schedule:
     - cron: "20 8 * * *"
 
@@ -54,7 +54,6 @@ jobs:
           pull: true
           load: true
           tags: ${{ env.DOCKER_IMAGE }}:test
-          target: test
 
       - name: Setup docker-compose
         run: |
@@ -131,7 +130,6 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
           context: .
           file: ./Dockerfile
-          target: release
           pull: true
           push: true
           tags: ${{ steps.prepare.outputs.tags }}

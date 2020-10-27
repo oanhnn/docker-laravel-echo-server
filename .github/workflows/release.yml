@@ -81,7 +81,6 @@ jobs:
           pull: true
           push: true
           tags: ${{ steps.prepare.outputs.tags }}
-          target: release
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

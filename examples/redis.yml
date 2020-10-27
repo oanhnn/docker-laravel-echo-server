@@ -28,7 +28,7 @@ services:
       retries: 10
 
   laravel-echo-server:
-    image: oanhnn/laravel-echo-server:3.1
+    image: oanhnn/laravel-echo-server:latest
     depends_on:
       - redis
     environment:

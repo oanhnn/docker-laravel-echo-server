@@ -1,45 +1,36 @@
 # oanhnn/laravel-echo-server
 
+Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
+
+[![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/Build%20and%20test/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
+[![Software License](https://img.shields.io/github/license/oanhnn/docker-laravel-echo-server.svg)](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE)
+
 ## Features
 
 - [x] Build from official NodeJS docker image
-- [x] Installed some [PHP extensions](#extensions)
-- [x] Installed XDebug extension but disable by default
-- [x] Add `artisan` bin alias to `php /var/www/artisan`
-- [x] Auto create infinite loop when run `artisan schedule:run` with option `--sleep`
+- [x] Install latest `laravel-echo-server`
+- [x] Tagging follow [sermatic version](https://semver.org/spec/v2.0.0.html)
+- [x] Auto generate config file
 - [x] Auto build and push by Github Workflow
-
-Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
-
-[![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/CI-CD/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
-[![Docker Pulls](https://img.shields.io/docker/pulls/oanhnn/laravel-echo-server.svg)](https://hub.docker.com/r/oanhnn/laravel-echo-server)
-[![Docker Stars](https://img.shields.io/docker/stars/oanhnn/laravel-echo-server.svg)](https://hub.docker.com/r/oanhnn/laravel-echo-server)
-[![Software License](https://img.shields.io/github/license/oanhnn/docker-laravel-echo-server.svg)](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE)
 
 ## Tags
 
-### Version tags
+Image `oanhnn/laravel-echo-server`
 
-Git tag  | Image tag | Badges
----------|-----------|-------
-`v1.0.0` | `1.0.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/1.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:1.0.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/1.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:1.0.0)
-`v2.0.0` | `2.0.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.0.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.0.0)
-`v2.1.0` | `2.1.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.1.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.1.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.0)
-`v2.1.1` | `2.1.1`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.1.1.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.1) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.1.1.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.1)
-`v3.0.0` | `3.0.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/3.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:3.0.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/3.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:3.0.0)
+- `X.Y.Z`  - the PATH  version (git tag `vX.Y.Z`)
+- `X.Y`    - the MINOR version 
+- `X`      - the MAJOR version
+- `latest` - the latest version
 
-### Branch tags
+Image `ghcr.io/oanhnn/laravel-echo-server`
 
-- `latest` - branch `master`
-- `develop` - branch `develop`
+- `edge`         - the edge version, it is newest code from branch `master`
+- `nightly`      - the nightly version, it is builded daily at 8:20 AM UTC
 
-## Features
-
-- [x] Base from `node:lts-alpine` image
-- [x] Install latest `laravel-echo-server`
-- [x] Auto generate config file
+> NOTE: Using sematic version for production
 
 ## Requirement
+
 - Docker Engine 1.13+
 
 ## Usage
@@ -49,7 +40,7 @@ Git tag  | Image tag | Badges
 Run laravel-echo-server by command
 
 ```bash
-$ docker run -d -p 6001:6001 -v $(pwd):/appoanhnn/laravel-echo-server
+$ docker run -d -p 6001:6001 -v $(pwd):/app oanhnn/laravel-echo-server
 ```
 
 
@@ -152,4 +143,4 @@ If you would like to help take a look at the [list of issues](https://github.com
 
 This project is released under the MIT License.   
 Copyright © 2020 [Oanh Nguyen](https://github.com/oanhnn)   
-Please see [License File](./LICENSE) for more information.
+Please see [License File](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE) for more information.
