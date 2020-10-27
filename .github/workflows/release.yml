@@ -1,19 +1,18 @@
-name: build
+name: Publish Releases to Hub
 
+# When its time to do a release do a full cross platform build for all supported
+# architectures and push all of them to Docker Hub.
+# Only trigger on semver shaped tags.
 on:
-  schedule:
-    - cron: '20 1 * * 2' # every Tuesday at 1:20 (UTC).
   push:
-    branches:
-      - '**'
     tags:
-      - 'v*.*.*'
-  pull_request:
+      - "v*.*.*"
 
 jobs:
   build:
-    name: Build and publish
     runs-on: ubuntu-latest
+    env:
+      DOCKER_IMAGE: oanhnn/laravel-echo-server
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -21,29 +20,15 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          DOCKER_IMAGE=oanhnn/laravel-echo-server
-          VERSION=noop
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            VERSION=nightly
-          elif [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/}
+          VERSION=${GITHUB_REF#refs/tags/}
+          if [[ $VERSION =~ ^v[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
             # Strip "v" prefix from tag name
             VERSION=$(echo $VERSION | sed -e 's/^v//')
-          elif [[ $GITHUB_REF == refs/heads/* ]]; then
-            VERSION=$(echo ${GITHUB_REF#refs/heads/} | sed -r 's#/+#-#g')
-            if [ "${{ github.event.repository.default_branch }}" = "$VERSION" ]; then
-              VERSION=edge
-            fi
-          elif [[ $GITHUB_REF == refs/pull/* ]]; then
-            VERSION=pr-${{ github.event.number }}
-          fi
-          TAGS="${DOCKER_IMAGE}:${VERSION}"
-          if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
             MINOR=${VERSION%.*}
             MAJOR=${MINOR%.*}
-            TAGS="$TAGS,${DOCKER_IMAGE}:${MINOR},${DOCKER_IMAGE}:${MAJOR},${DOCKER_IMAGE}:latest"
-          elif [ "${{ github.event_name }}" = "push" ]; then
-            TAGS="$TAGS,${DOCKER_IMAGE}:sha-${GITHUB_SHA::8}"
+            TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${MINOR},${DOCKER_IMAGE}:${MAJOR},${DOCKER_IMAGE}:latest"
+          else
+            TAGS="${DOCKER_IMAGE}:${VERSION}"
           fi
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=tags::${TAGS}
@@ -51,8 +36,11 @@ jobs:
 
       - name: Setting up QEMU
         uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
 
       - name: Setting up Docker Buildx
+        id: buildx
         uses: docker/setup-buildx-action@v1
 
       - name: Cache Docker layers
@@ -73,12 +61,13 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          builder: ${{ steps.buildx.outputs.name }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           context: .
           file: ./Dockerfile
           labels: |
-            org.opencontainers.image.title='The Laravel runtime Docker Image'
+            org.opencontainers.image.title='The Laravel Echo Server Docker Image'
             org.opencontainers.image.authors=oanhnn
             org.opencontainers.image.created=${{ steps.prepare.outputs.created }}
             org.opencontainers.image.source=${{ github.repositoryUrl }}
@@ -90,5 +79,9 @@ jobs:
             linux/arm/v6
             linux/arm/v7
           pull: true
-          push: ${{ github.event_name != 'pull_request' }}
+          push: true
           tags: ${{ steps.prepare.outputs.tags }}
+          target: release
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}

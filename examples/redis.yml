@@ -8,18 +8,27 @@ volumes:
 
 services:
   redis:
-    image: redis:5-alpine
-    command: redis-server --bind 0.0.0.0 --requirepass secret@123
+    image: redis:alpine
+    command:
+      - redis-server
+      - --appendonly yes
+      - --requirepass $$REDISCLI_AUTH
+    environment:
+      REDISCLI_AUTH: secret@123
     networks:
       - redis-net
-    # ports:
-    #   - 6379:6379
     restart: unless-stopped
     volumes:
       - redis-vol:/data
+    healthcheck:
+      test: redis-cli -h redis -p 6379 ping
+      start_period: 1s
+      interval: 1s
+      timeout: 3s
+      retries: 10
 
   laravel-echo-server:
-    image: oanhnn/laravel-echo-server
+    image: oanhnn/laravel-echo-server:3.1
     depends_on:
       - redis
     environment:
@@ -36,3 +45,9 @@ services:
     ports:
       - 6001:6001
     restart: unless-stopped
+    healthcheck:
+      test: /usr/local/bin/health-check
+      start_period: 1s
+      interval: 1s
+      timeout: 3s
+      retries: 10
