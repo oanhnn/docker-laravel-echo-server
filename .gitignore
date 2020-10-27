@@ -1,6 +1,5 @@
 # User specific & automatically generated files #
 #################################################
-.docker
 *.log
 *.sqlite
 

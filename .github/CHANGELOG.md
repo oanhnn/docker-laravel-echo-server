@@ -29,6 +29,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [v3.1.0] - 2020-10-27
+
+### Changed
+- Update to latest laravel-echo-server version
+- Remove dangling lock file before start
+- Change GitHub Workflow build, test and release
+
+
+
+
 ## [v3.0.0] - 2020-04-13
 
 ### Added
@@ -84,7 +94,8 @@ First release
 
 
 
-[Unreleased]: https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.0.0...develop
+[Unreleased]: https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.0...develop
+[v3.1.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.0.0...v3.1.0
 [v3.0.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v2.1.1...v3.0.0
 [v2.1.1]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v2.1.0...v2.1.1
 [v2.1.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v2.0.0...v2.1.0

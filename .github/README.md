@@ -2,35 +2,35 @@
 
 Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
 
-[![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/CI-CD/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
-[![Docker Pulls](https://img.shields.io/docker/pulls/oanhnn/laravel-echo-server.svg)](https://hub.docker.com/r/oanhnn/laravel-echo-server)
-[![Docker Stars](https://img.shields.io/docker/stars/oanhnn/laravel-echo-server.svg)](https://hub.docker.com/r/oanhnn/laravel-echo-server)
+[![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/CI/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
 [![Software License](https://img.shields.io/github/license/oanhnn/docker-laravel-echo-server.svg)](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE)
-
-## Tags
-
-### Version tags
-
-Git tag  | Image tag | Badges
----------|-----------|-------
-`v1.0.0` | `1.0.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/1.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:1.0.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/1.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:1.0.0)
-`v2.0.0` | `2.0.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.0.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.0.0)
-`v2.1.0` | `2.1.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.1.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.1.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.0)
-`v2.1.1` | `2.1.1`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/2.1.1.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.1) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/2.1.1.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:2.1.1)
-`v3.0.0` | `3.0.0`   | [![Docker Image Size](https://img.shields.io/microbadger/image-size/oanhnn/laravel-echo-server/3.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:3.0.0) [![Docker Image Layers](https://img.shields.io/microbadger/layers/oanhnn/laravel-echo-server/3.0.0.svg)](https://microbadger.com/images/oanhnn/laravel-echo-server:3.0.0)
-
-### Branch tags
-
-- `latest` - branch `master`
-- `develop` - branch `develop`
 
 ## Features
 
-- [x] Base from `node:lts-alpine` image
+- [x] Build from official NodeJS docker image
 - [x] Install latest `laravel-echo-server`
+- [x] Tagging follow [sermatic version](https://semver.org/spec/v2.0.0.html)
 - [x] Auto generate config file
+- [x] Auto build and push by Github Workflow
+
+## Tags
+
+Image `oanhnn/laravel-echo-server`
+
+- `X.Y.Z`  - the PATH  version (git tag `vX.Y.Z`)
+- `X.Y`    - the MINOR version 
+- `X`      - the MAJOR version
+- `latest` - the latest version
+
+Image `ghcr.io/oanhnn/laravel-echo-server`
+
+- `edge`         - the edge version, it is newest code from branch `master`
+- `nightly`      - the nightly version, it is builded daily at 8:20 AM UTC
+
+> NOTE: Using sematic version for production
 
 ## Requirement
+
 - Docker Engine 1.13+
 
 ## Usage
@@ -40,7 +40,7 @@ Git tag  | Image tag | Badges
 Run laravel-echo-server by command
 
 ```bash
-$ docker run -d -p 6001:6001 -v $(pwd):/appoanhnn/laravel-echo-server
+$ docker run -d -p 6001:6001 -v $(pwd):/app oanhnn/laravel-echo-server
 ```
 
 
@@ -142,5 +142,5 @@ If you would like to help take a look at the [list of issues](https://github.com
 ## License
 
 This project is released under the MIT License.   
-Copyright © [Oanh Nguyen](https://github.com/oanhnn)   
+Copyright © 2020 [Oanh Nguyen](https://github.com/oanhnn)   
 Please see [License File](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE) for more information.

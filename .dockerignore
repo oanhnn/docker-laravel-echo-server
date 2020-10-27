@@ -1,12 +1,36 @@
-/examples
-/hooks
-/.editorconfig
-/.git
-/.gitattributes
-/.github
-/.gitignore
-/.travis.yml
-/Dockerfile
-/LICENSE
-/README.md
-/CHANGELOG.md
+# Other files #
+################
+examples
+
+# User specific & automatically generated files #
+#################################################
+*.log
+*.md
+.travis.yml
+.github
+README.md
+CHANGELOG.md
+
+# IDE and editor specific files #
+#################################
+nbproject
+.idea
+.vscode
+.editorconfig
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Git config #
+##############
+.git
+.gitignore
+.gitattributes

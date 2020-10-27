@@ -6,6 +6,10 @@ if [[ "$1" == 'init' ]]; then
     set -- laravel-echo-server "$@"
 fi
 
+if [ "$1" == 'start' ] && [ -f '/app/laravel-echo-server.lock' ]; then
+    rm /app/laravel-echo-server.lock
+fi
+
 # laravel-echo-server <sub-command>
 if [[ "$1" == 'start' ]] || [[ "$1" == 'client:add' ]] || [[ "$1" == 'client:remove' ]]; then
     if [[ "${GENERATE_CONFIG:-true}" == "false" ]]; then

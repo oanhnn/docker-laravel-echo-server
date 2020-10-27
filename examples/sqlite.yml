@@ -1,11 +1,11 @@
 version: "3"
 
 volumes:
-  db: {}
+  sqlite-vol: {}
 
 services:
   laravel-echo-server:
-    image: oanhnn/laravel-echo-server
+    image: oanhnn/laravel-echo-server:latest
     environment:
       LARAVEL_ECHO_SERVER_AUTH_HOST: http://example.com
       LARAVEL_ECHO_SERVER_DEBUG:     'true'
@@ -14,4 +14,4 @@ services:
       - 6001:6001
     restart: unless-stopped
     volumes:
-      - dt:/database
+      - sqlite-vol:/database

@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  # Build the nightly version at 8:20 AM UTC
+  schedule:
+    - cron: "20 8 * * *"
+
+  # For all pushes to the main branch run the tests and push the image to the
+  # GitHub Container Registry under an edge tag
+  push:
+    branches:
+      - master
+
+  # For all PRs to the main branch run the tests
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_IMAGE: oanhnn/laravel-echo-server
+    strategy:
+      fail-fast: false
+      matrix:
+        database:
+          - redis
+          - sqlite
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setting up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-buildx-
+
+      - name: Build test
+        id: docker_test
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          context: .
+          file: ./Dockerfile
+          pull: true
+          load: true
+          tags: ${{ env.DOCKER_IMAGE }}:test
+
+      - name: Setup docker-compose
+        run: |
+          mkdir ./ci-test
+          cp ./examples/${{ matrix.database }}.yml ./ci-test/docker-compose.yml
+          sed -i "s|oanhnn/laravel-echo-server:.*|oanhnn/laravel-echo-server:test|g" ./ci-test/docker-compose.yml
+
+      - name: Run with docker
+        run: |
+          docker-compose up -d
+          sleep 10s
+          docker-compose ps
+          curl --silent --show-error --fail http://127.0.0.1:6001/socket.io/socket.io.js
+          docker-compose down
+        working-directory: ./ci-test
+
+  push:
+    runs-on: ubuntu-latest
+    needs: [ 'test' ]
+    if: github.event_name != 'pull_request'
+    env:
+      DOCKER_IMAGE: ghcr.io/oanhnn/laravel-echo-server
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare
+        id: prepare
+        run: |
+          VERSION=test
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            VERSION=nightly
+          elif [[ $GITHUB_REF == refs/heads/* ]]; then
+            VERSION=$(echo ${GITHUB_REF#refs/heads/} | sed -r 's#/+#-#g')
+            if [ "${{ github.event.repository.default_branch }}" = "$VERSION" ]; then
+              VERSION=edge
+            fi
+          elif [[ $GITHUB_REF == refs/pull/* ]]; then
+            VERSION=pr-${{ github.event.number }}
+          fi
+          TAGS="${DOCKER_IMAGE}:${VERSION}"
+          if [ "${{ github.event_name }}" = "push" ]; then
+            TAGS="$TAGS,${DOCKER_IMAGE}:sha-${GITHUB_SHA::8}"
+          fi
+          echo ::set-output name=version::${VERSION}
+          echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+
+      - name: Setting up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          context: .
+          file: ./Dockerfile
+          pull: true
+          push: true
+          tags: ${{ steps.prepare.outputs.tags }}
+
