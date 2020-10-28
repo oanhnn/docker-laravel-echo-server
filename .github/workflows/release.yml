@@ -76,8 +76,9 @@ jobs:
             org.opencontainers.image.licenses=${{ github.event.repository.license.name }}
           platforms: |
             linux/amd64
-            linux/arm/v6
+            linux/arm64
             linux/arm/v7
+            linux/arm/v6
           pull: true
           push: true
           tags: ${{ steps.prepare.outputs.tags }}
