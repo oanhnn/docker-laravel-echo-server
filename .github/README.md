@@ -2,6 +2,8 @@
 
 Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
 
+> [Tiếng Việt](README-vi.md)
+
 [![Build Status](https://github.com/oanhnn/docker-laravel-echo-server/workflows/CI/badge.svg)](https://github.com/oanhnn/docker-laravel-echo-server/actions)
 [![Software License](https://img.shields.io/github/license/oanhnn/docker-laravel-echo-server.svg)](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE)
 
@@ -72,7 +74,7 @@ See some examples in `examples` folder.
 
 ### Configure database
 
-The database may be `redis` of `sqlite`.   
+The database may be `redis` or `sqlite`.   
 It be configured by environment variable `LARAVEL_ECHO_SERVER_DB` (default is `redis`). 
 
 
@@ -99,6 +101,8 @@ It be configured by environment variable `LARAVEL_ECHO_SERVER_DB` (default is `r
   | `REDIS_PASSWORD`     | `NULL`              |
   | `REDIS_PREFIX`       | `laravel_database_` |
   | `REDIS_DB`           | `0`                 |
+
+> NOTE: These environment variables use only when generate `laravel-echo-server.json` file. You can use environment variables to override config, please see [next section](#override-config-by-environment-variables).
 
 - You can use SQLite database by set environment variable `LARAVEL_ECHO_SERVER_DB` to `sqlite`. 
   The SQLite file will store in `/app/database/`

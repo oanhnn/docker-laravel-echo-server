@@ -12,7 +12,7 @@ fi
 
 # laravel-echo-server <sub-command>
 if [[ "$1" == 'start' ]] || [[ "$1" == 'client:add' ]] || [[ "$1" == 'client:remove' ]]; then
-    if [[ "${GENERATE_CONFIG:-true}" == "false" ]]; then
+    if [[ "${LARAVEL_ECHO_SERVER_GENERATE_CONFIG:-true}" == "false" ]]; then
         # wait for another process to inject the config
         echo -n "Waiting for /app/laravel-echo-server.json"
         while [[ ! -f /app/laravel-echo-server.json ]]; do
