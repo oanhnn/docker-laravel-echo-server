@@ -133,6 +133,9 @@ If some environment variables are existed (allow load `/app/.env` file is found)
 
 See more about environment variables in [here](https://github.com/tlaverdure/laravel-echo-server/blob/master/README.md#dotenv)
 
+> **NOTE** The entrypoint script only support partial for these environment variable overrides.
+> Some environments will support by native laravel-echo-server. It is implemented by code and overrides laravel-echo-server.json
+> See [more](https://github.com/oanhnn/docker-laravel-echo-server/issues/18)
 
 ## Contributing
 
