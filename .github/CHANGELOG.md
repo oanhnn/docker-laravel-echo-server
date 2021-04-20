@@ -29,6 +29,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 
+## [v3.1.2] - 2021-04-21
+
+### Changed
+- Change to using health-check script by node
+- No longer install package `curl`
+
+
+
+
+## [v3.1.1] - 2020-12-07
+
+### Added
+- README in Vietnamese
+- Build for linux/arm64 platform
+
+### Fixed
+- Fix incorrect environment variable in docker-entrypoint
+
+
+
+
+
 ## [v3.1.0] - 2020-10-27
 
 ### Changed
@@ -94,7 +116,9 @@ First release
 
 
 
-[Unreleased]: https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.0...develop
+[Unreleased]: https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.2...develop
+[v3.1.2]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.1...v3.1.2
+[v3.1.1]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.0...v3.1.1
 [v3.1.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.0.0...v3.1.0
 [v3.0.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v2.1.1...v3.0.0
 [v2.1.1]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v2.1.0...v2.1.1
