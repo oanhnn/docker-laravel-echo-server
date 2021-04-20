@@ -22,9 +22,9 @@ services:
       - redis-vol:/data
     healthcheck:
       test: redis-cli -h redis -p 6379 ping
-      start_period: 1s
-      interval: 1s
-      timeout: 3s
+      start_period: 3s
+      interval: 2s
+      timeout: 2s
       retries: 10
 
   laravel-echo-server:
@@ -46,8 +46,8 @@ services:
       - 6001:6001
     restart: unless-stopped
     healthcheck:
-      test: /usr/local/bin/health-check
-      start_period: 1s
-      interval: 1s
+      test: node /usr/local/src/healthcheck.js
+      start_period: 5s
+      interval: 3s
       timeout: 3s
       retries: 10

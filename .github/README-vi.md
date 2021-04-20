@@ -27,7 +27,7 @@ Image `oanhnn/laravel-echo-server`
 Image `ghcr.io/oanhnn/laravel-echo-server`
 
 - `edge`         - the edge version, được tạo từ code mới nhất của nhánh `master`
-- `nightly`      - the nightly version, Được tạo hàng ngày từ code mới nhất của nhánh `master` vào 8:20 AM UTC
+- `nightly`      - the nightly version, được tạo hàng ngày từ code mới nhất của nhánh `master` vào 8:20 AM UTC
 
 > CHÚ Ý: Hãy sử dụng sermatic version cho sản phẩm (VD: `3.1`)
 
@@ -136,6 +136,9 @@ Một số biến môi trường khi tồn tại (kể cả tải từ tệp `/a
 
 Bạn có thể xem thêm thông tin về ghi đè thiết lập cấu hình bằng biến môi trường ở [đây](https://github.com/tlaverdure/laravel-echo-server/blob/master/README.md#dotenv)
 
+> **Chú ý** Tệp entrypoint chỉ hỗ trợ ghi đè một số biến môi trường. Một số biến môi trường khác được ghi đè bởi chinh `laravel-echo-server`.
+> Nó thực hiện trong mã nguồn của mình để ghi đè các cấu hình từ file `laravel-echo-server.json`
+> [Xem thêm](https://github.com/oanhnn/docker-laravel-echo-server/issues/18)
 
 ## Đóng góp
 
@@ -149,5 +152,5 @@ Nếu bạn muốn giúp đỡ, hãy tìm kiếm trong [danh sách các vấn đ
 ## Giấy phép
 
 Dự án này được phát hành dưới giấy phép mã nguồn mở MIT.   
-Bản quyền thuộc © 2020 [Oanh Nguyen](https://github.com/oanhnn)   
+Bản quyền thuộc © 2021 [Oanh Nguyen](https://github.com/oanhnn)   
 Xem file [License](https://github.com/oanhnn/docker-laravel-echo-server/blob/master/LICENSE) để biết thêm thông tin.

@@ -1,0 +1,25 @@
+{
+  "apiOriginAllow": {},
+  "authEndpoint": "/broadcasting/auth",
+  "authHost": "http://localhost",
+  "clients": [],
+  "database": "sqlite",
+  "databaseConfig": {
+    "sqlite": {
+      "databasePath": "/database/laravel-echo-server.sqlite"
+    },
+    "publishPresence": true
+  },
+  "devMode": false,
+  "host": null,
+  "port": 6001,
+  "protocol": "http",
+  "sslCertPath": "",
+  "sslKeyPath": "",
+  "sslCertChainPath": "",
+  "sslPassphrase": "",
+  "socketio": {
+    "path": "/example.io"
+  },
+  "subscribers": {"http": true}
+}

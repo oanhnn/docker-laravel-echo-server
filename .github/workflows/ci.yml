@@ -21,12 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_IMAGE: oanhnn/laravel-echo-server
-    strategy:
-      fail-fast: false
-      matrix:
-        database:
-          - redis
-          - sqlite
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -55,20 +49,25 @@ jobs:
           load: true
           tags: ${{ env.DOCKER_IMAGE }}:test
 
-      - name: Setup docker-compose
+      - name: Test with sqlite
         run: |
-          mkdir ./ci-test
-          cp ./examples/${{ matrix.database }}.yml ./ci-test/docker-compose.yml
-          sed -i "s|oanhnn/laravel-echo-server:.*|oanhnn/laravel-echo-server:test|g" ./ci-test/docker-compose.yml
+          sed -i "s|oanhnn/laravel-echo-server:.*|oanhnn/laravel-echo-server:test|g" ./sqlite.yml
+          docker-compose -f sqlite.yml up -d
+          sleep 10s
+          docker-compose -f sqlite.yml ps
+          curl --silent --show-error --fail http://127.0.0.1:6001/example.io/socket.io.js
+          docker-compose -f sqlite.yml down
+        working-directory: ./examples
 
       - name: Run with docker
         run: |
-          docker-compose up -d
+          sed -i "s|oanhnn/laravel-echo-server:.*|oanhnn/laravel-echo-server:test|g" ./redis.yml
+          docker-compose -f redis.yml up -d
           sleep 10s
-          docker-compose ps
+          docker-compose -f redis.yml ps
           curl --silent --show-error --fail http://127.0.0.1:6001/socket.io/socket.io.js
-          docker-compose down
-        working-directory: ./ci-test
+          docker-compose -f redis.yml down
+        working-directory: ./examples
 
   push:
     runs-on: ubuntu-latest
