@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased] - YYYY-MM-DD
 
 ### Added
-- replace env `authHost` in config.json with LARAVEL_ECHO_AUTH_HOST
+- replace env `authHost` in config.json with `LARAVEL_ECHO_AUTH_HOST`
 - add default cors settings
-- replace env allowOrigin in config.json with LARAVEL_ECHO_ALLOW_ORIGIN
-
+- replace env allowOrigin in config.json with `LARAVEL_ECHO_ALLOW_ORIGIN`
+- support to create initial app client with `LARAVEL_ECHO_CLIENT_APP_ID` and `LARAVEL_ECHO_CLIENT_APP_KEY`
 ### Changed
 - Nothing
 

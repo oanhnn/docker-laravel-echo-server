@@ -7,7 +7,7 @@
   },
   "authEndpoint": "/broadcasting/auth",
   "authHost": "LARAVEL_ECHO_AUTH_HOST",
-  "clients": [],
+  "clients": "LARAVEL_ECHO_CLIENTS",
   "database": "LARAVEL_ECHO_SERVER_DB",
   "databaseConfig": {
     "redis": {
