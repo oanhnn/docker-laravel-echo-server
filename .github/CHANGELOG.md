@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased] - YYYY-MM-DD
 
 ### Added
-- Nothing
+- replace env `authHost` in config.json with LARAVEL_ECHO_AUTH_HOST
 
 ### Changed
 - Nothing
