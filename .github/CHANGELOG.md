@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - replace env `authHost` in config.json with LARAVEL_ECHO_AUTH_HOST
+- add default cors settings
+- replace env allowOrigin in config.json with LARAVEL_ECHO_ALLOW_ORIGIN
 
 ### Changed
 - Nothing
