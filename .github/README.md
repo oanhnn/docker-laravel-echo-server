@@ -121,6 +121,8 @@ If some environment variables are existed (allow load `/app/.env` file is found)
 | `LARAVEL_ECHO_SERVER_AUTH_HOST`      | `authHost`                      | This option will fall back to the `LARAVEL_ECHO_SERVER_HOST` option as the default if that is set. |
 | `LARAVEL_ECHO_SERVER_HOST`           | `host`                          | |
 | `LARAVEL_ECHO_SERVER_PORT`           | `port`                          | |
+| `LARAVEL_ECHO_CLIENT_APP_ID`         | `clients.0.appId`               | optional: add first client with key `LARAVEL_ECHO_CLIENT_APP_KEY` |
+| `LARAVEL_ECHO_CLIENT_APP_KEY`        | `clients.0.key`                 | |
 | `LARAVEL_ECHO_SERVER_DEBUG`          | `devMode`                       | |
 | `LARAVEL_ECHO_SERVER_REDIS_HOST`     | `databaseConfig.redis.host`     | |
 | `LARAVEL_ECHO_SERVER_REDIS_PORT`     | `databaseConfig.redis.port`     | |
