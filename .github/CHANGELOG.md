@@ -9,10 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased] - YYYY-MM-DD
 
 ### Added
-- replace env `authHost` in config.json with `LARAVEL_ECHO_AUTH_HOST`
-- add default cors settings
-- replace env allowOrigin in config.json with `LARAVEL_ECHO_ALLOW_ORIGIN`
-- support to create initial app client with `LARAVEL_ECHO_CLIENT_APP_ID` and `LARAVEL_ECHO_CLIENT_APP_KEY`
+- Nothing
+
 ### Changed
 - Nothing
 
@@ -27,6 +25,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Security
 - Nothing
+
+
+
+
+## [v3.1.3] - 2022-05-13
+
+### Added
+- replace env `authHost` in config.json with `LARAVEL_ECHO_AUTH_HOST`
+- add default cors settings
+- replace env allowOrigin in config.json with `LARAVEL_ECHO_ALLOW_ORIGIN`
+- support to create initial app client with `LARAVEL_ECHO_CLIENT_APP_ID` and `LARAVEL_ECHO_CLIENT_APP_KEY`
+
+### Fixed
+- REDIS_PREFIX empty not working
 
 
 
@@ -118,7 +130,8 @@ First release
 
 
 
-[Unreleased]: https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.2...develop
+[Unreleased]: https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.3...develop
+[v3.1.3]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.2...v3.1.3
 [v3.1.2]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.1...v3.1.2
 [v3.1.1]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.1.0...v3.1.1
 [v3.1.0]:      https://github.com/oanhnn/docker-laravel-echo-server/compare/v3.0.0...v3.1.0
