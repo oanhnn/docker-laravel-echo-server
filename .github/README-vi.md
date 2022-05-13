@@ -1,5 +1,11 @@
 # oanhnn/laravel-echo-server
 
+> **Chú ý:** Tôi thông báo rằng tôi sẽ không tiếp tục phát triển dự án này nữa. 
+> Vì tôi đã chuyển sang sử dụng Soketi cho các dự án của mình. 
+> Nguyên nhân là do laravel-echo-server dường như đã ngừng phát triển. 
+> Soketi là một dự án mã nguồn mở thay thế Pusher rất tốt và vẫn đang phát triển. 
+> Tôi vẫn sẽ hỗ trợ fix bug cho dự án này.
+
 Alpine based [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server) image.
 
 > [English](README.md)
