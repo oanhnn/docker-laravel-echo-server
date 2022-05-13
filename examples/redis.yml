@@ -9,12 +9,6 @@ volumes:
 services:
   redis:
     image: redis:alpine
-    command:
-      - redis-server
-      - --appendonly yes
-      - --requirepass $$REDISCLI_AUTH
-    environment:
-      REDISCLI_AUTH: secret@123
     networks:
       - redis-net
     restart: unless-stopped
@@ -37,13 +31,12 @@ services:
       LARAVEL_ECHO_SERVER_DB:        redis
       REDIS_HOST:     redis
       REDIS_PORT:     6379
-      REDIS_PREFIX:   laravel_
-      REDIS_PASSWORD: secret@123
+      REDIS_PREFIX:   ""
       REDIS_DB:       0
     networks:
       - redis-net
     ports:
-      - 6001:6001
+     - 6001:6001
     restart: unless-stopped
     healthcheck:
       test: node /usr/local/src/healthcheck.js
